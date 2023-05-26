@@ -1,0 +1,23 @@
+﻿@model List<TVshow>
+
+<h1>Top Shows</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Image</th
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var serie in Model)
+        {
+                    <tr>
+                        <td>@serie.Title</td>
+                        <td><img src="@serie.ImageURL" alt="Serie Image"></td>
+                            <td>@serie.Genre</td>
+                    </tr>
+        }
+    </tbody>
+</table>

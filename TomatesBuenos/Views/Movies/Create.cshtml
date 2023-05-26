@@ -1,0 +1,36 @@
+﻿@model TomatesBuenos.Models.Movie
+
+@{
+    ViewData["Title"] = "Upload Recommendation";
+}
+
+<h4> Movie</h4>
+<h5> Insert the movie URL</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method= "post" asp-controller="Movies" asp-action="Create">
+
+            <div class="form-group">
+
+                <input type ="text" id="texto" name="url" class="form-control"/>
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Recommendations table</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

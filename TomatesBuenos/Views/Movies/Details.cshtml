@@ -1,0 +1,95 @@
+﻿@model TomatesBuenos.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1>
+
+<div>
+    <h1>@Html.DisplayFor(model => model.Title)</h1>
+    <hr />
+    <div style="text-align: center;">
+        <img class="movie-image black-border" src="@Model.ImageURL" alt="Movie poster" width="350" height="450" />
+    </div>   
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AudienceRating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AudienceRating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CriticsRating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CriticsRating)%
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AvaliablePlatfomrms)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AvaliablePlatfomrms)%
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Synopsis)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Synopsis)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Clasification)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Clasification)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DirectionTeam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DirectionTeam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MainActors)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MainActors)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AudienceComments)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AudienceComments)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CriticsComments)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CriticsComments)
+        </dd>
+    </dl>
+</div>
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

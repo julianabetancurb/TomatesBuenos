@@ -1,0 +1,144 @@
+﻿@model IEnumerable<TomatesBuenos.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        background-color: #E7E6E4; /* Reemplaza este valor con el color que desees */
+    }
+</style>
+
+<h1>Movies Recommendations</h1>
+<button id="ordenarPorAudBtn">Ordenar por puntaje de audiencia</button>
+<button id="ordenarPorCritBtn">Ordenar por puntaje de críticos</button>
+<button id="ordenarPorGeneroBtn">Ordenar por género</button>
+
+
+
+
+<p>
+    <a asp-action="Create">Upload new recommendation</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>  
+            <th>
+                Image
+            </th>
+            <th>
+                Title
+            </th>
+
+            <th>
+                AudienceRating
+            </th>
+            <th>
+                CriticsRating
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>       
+                       <img src=" @item.ImageURL" style="width:100px;height:140px" />
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                         <td class="audienceRating">
+                        @Html.DisplayFor(modelItem => item.AudienceRating)%
+                        </td>
+                        <td class="criticsRating">
+                        @Html.DisplayFor(modelItem => item.CriticsRating)%
+                        </td>
+                                <td class="genre">
+                        @Html.DisplayFor(modelItem => item.Genre)
+                            </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">See More...</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                    <form method="post" asp-controller="FavoritesMovies" asp-action="AddToFavorites" asp-route-id="@item.Id">
+                        <button type="submit" class="btn btn-primary">Añadir a favoritos</button>
+                    </form>
+                        }
+                        else
+                        {
+                    <p>Inicia sesión para añadir esta película a tus favoritos.</p>
+                        }
+                        </td>
+
+                    </tr>
+        }
+    </tbody>
+</table>
+
+
+    <script>
+    window.onload = function() {
+        var audBtn = document.getElementById("ordenarPorAudBtn");
+        audBtn.addEventListener("click", ordenarPorPuntajeDeAudiencia);
+
+        var critBtn = document.getElementById("ordenarPorCritBtn");
+        critBtn.addEventListener("click", ordenarPorPuntajeDeCriticos);
+
+        var genreBtn = document.getElementById("ordenarPorGeneroBtn");
+        genreBtn.addEventListener("click", ordenarPorGenero);
+    };
+
+    function ordenarPorPuntajeDeAudiencia() {
+        var table = document.querySelector(".table");
+        var rows = Array.from(table.rows).slice(1); // Excluimos la primera fila (encabezados)
+
+        rows.sort(function(rowA, rowB) {
+            var scoreA = parseInt(rowA.querySelector(".audienceRating").innerText);
+            var scoreB = parseInt(rowB.querySelector(".audienceRating").innerText);
+            return scoreB - scoreA; // Orden descendente
+        });
+
+        for (var i = 0; i < rows.length; i++) {
+            table.appendChild(rows[i]);
+        }
+    }
+
+    function ordenarPorPuntajeDeCriticos() {
+        var table = document.querySelector(".table");
+        var rows = Array.from(table.rows).slice(1); // Excluimos la primera fila (encabezados)
+
+        rows.sort(function(rowA, rowB) {
+            var scoreA = parseInt(rowA.querySelector(".criticsRating").innerText);
+            var scoreB = parseInt(rowB.querySelector(".criticsRating").innerText);
+            return scoreB - scoreA; // Orden descendente
+        });
+
+        for (var i = 0; i < rows.length; i++) {
+            table.appendChild(rows[i]);
+        }
+    }
+    function ordenarPorGenero() {
+        var table = document.querySelector(".table");
+        var rows = Array.from(table.rows).slice(1); // Excluimos la primera fila (encabezados)
+
+        rows.sort(function(rowA, rowB) {
+            var genreA = rowA.querySelector(".genre").innerText.toLowerCase();
+            var genreB = rowB.querySelector(".genre").innerText.toLowerCase();
+            return genreA.localeCompare(genreB); // Orden alfabético ascendente
+        });
+
+        for (var i = 0; i < rows.length; i++) {
+            table.appendChild(rows[i]);
+        }
+    }
+</script>
+
+
+</html>

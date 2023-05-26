@@ -1,0 +1,84 @@
+﻿@model TomatesBuenos.Models.TVshow
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TVshow</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageURL" class="control-label"></label>
+                <input asp-for="ImageURL" class="form-control" />
+                <span asp-validation-for="ImageURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AudienceRating" class="control-label"></label>
+                <input asp-for="AudienceRating" class="form-control" />
+                <span asp-validation-for="AudienceRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CriticsRating" class="control-label"></label>
+                <input asp-for="CriticsRating" class="form-control" />
+                <span asp-validation-for="CriticsRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvaliablePlatforms" class="control-label"></label>
+                <input asp-for="AvaliablePlatforms" class="form-control" />
+                <span asp-validation-for="AvaliablePlatforms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Synopsis" class="control-label"></label>
+                <input asp-for="Synopsis" class="form-control" />
+                <span asp-validation-for="Synopsis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genre" class="control-label"></label>
+                <input asp-for="Genre" class="form-control" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Premiere" class="control-label"></label>
+                <input asp-for="Premiere" class="form-control" />
+                <span asp-validation-for="Premiere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Creators" class="control-label"></label>
+                <input asp-for="Creators" class="form-control" />
+                <span asp-validation-for="Creators" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Starring" class="control-label"></label>
+                <input asp-for="Starring" class="form-control" />
+                <span asp-validation-for="Starring" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
